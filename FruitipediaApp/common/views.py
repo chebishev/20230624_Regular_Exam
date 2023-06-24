@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from FruitipediaApp.fruit_app.models import FruitModel
+
 
 # Create your views here.
 def index(request):
@@ -7,4 +9,5 @@ def index(request):
 
 
 def dashboard(request):
-    return render(request, 'common/dashboard.html')
+    fruits = FruitModel.objects.all()
+    return render(request, 'common/dashboard.html', {'fruits': fruits})

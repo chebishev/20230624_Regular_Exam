@@ -19,6 +19,11 @@ class CreateProfileForm(BaseProfileForm):
             'password': False
         }
         widgets = {
+            'first_name': forms.TextInput(attrs={'placeholder': 'First Name'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Last Name'}),
+            'email': forms.EmailInput(attrs={'placeholder': 'Email'}),
+            'password': forms.PasswordInput(attrs={'placeholder': 'Password'}),
         }
+        password = forms.PasswordInput()
 
 
