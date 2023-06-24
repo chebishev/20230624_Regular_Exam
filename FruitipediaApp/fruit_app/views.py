@@ -2,10 +2,14 @@ from django.shortcuts import render, redirect
 
 from FruitipediaApp.fruit_app.forms import CreateFruitForm, EditFruitForm, DeleteFruitForm
 from FruitipediaApp.fruit_app.models import FruitModel
+from FruitipediaApp.profile_app.models import ProfileModel
 
 
 # Create your views here.
 def fruit_create(request):
+    profile = ProfileModel.objects.first()
+    if not profile:
+        return redirect('index')
     form = CreateFruitForm(request.POST or None)
     if form.is_valid():
         form.save()
