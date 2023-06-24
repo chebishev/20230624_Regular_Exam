@@ -1,9 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+from FruitipediaApp.profile_app.forms import CreateProfileForm
 
 
 # Create your views here.
 def profile_create(request):
-    return render(request, 'profile_app/create-profile.html')
+    form = CreateProfileForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('dashboard')
+
+    return render(request, 'profile_app/create-profile.html', {'form': form})
 
 
 def profile_details(request):
