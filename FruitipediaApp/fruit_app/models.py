@@ -12,7 +12,7 @@ class FruitModel(models.Model):
         max_length=30,
         validators=[
             MinLengthValidator(2),
-            name_only_letters    # TODO -> Check this when you are testing the forms!
+            name_only_letters
         ]
     )
     image_url = models.URLField(

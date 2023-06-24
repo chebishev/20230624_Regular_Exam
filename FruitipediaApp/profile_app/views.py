@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 
-from FruitipediaApp.profile_app.forms import CreateProfileForm
+from FruitipediaApp.fruit_app.models import FruitModel
+from FruitipediaApp.profile_app.forms import CreateProfileForm, EditProfileForm
 from FruitipediaApp.profile_app.models import ProfileModel
 
 
@@ -20,12 +21,25 @@ def profile_create(request):
 
 
 def profile_details(request):
-    return render(request, 'profile_app/details-profile.html')
+    fruits = FruitModel.objects.all()
+    return render(request, 'profile_app/details-profile.html', {'fruits': fruits})
 
 
 def profile_edit(request):
-    return render(request, 'profile_app/edit-profile.html')
+    form = EditProfileForm(request.POST or None, instance=ProfileModel.objects.first())
+    if form.is_valid():
+        form.save()
+        return redirect('profile_details')
+
+    return render(request, 'profile_app/edit-profile.html', {'form': form})
 
 
 def profile_delete(request):
+    profile = ProfileModel.objects.first()
+    fruits = FruitModel.objects.all()
+    if request.method == 'POST':
+        profile.delete()
+        fruits.delete()
+        return redirect('index')
+
     return render(request, 'profile_app/delete-profile.html')

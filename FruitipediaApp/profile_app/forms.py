@@ -27,3 +27,11 @@ class CreateProfileForm(BaseProfileForm):
         password = forms.PasswordInput()
 
 
+class EditProfileForm(BaseProfileForm):
+    class Meta(BaseProfileForm.Meta):
+        fields = ['first_name', 'last_name', 'image_url', 'age']
+        labels = {
+            'first_name': "First Name",
+            'last_name': "Last Name",
+            'image_url': "Image URL",
+        }

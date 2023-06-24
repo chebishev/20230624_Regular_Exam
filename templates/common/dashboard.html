@@ -13,7 +13,6 @@
             <!-- fruit name -->
             <h3 class="title">{{ fruit.name }}</h3>
             <!-- fruit description -->
-            {# TODO Check if 50 characters is max showed on the fruit card #}
             <p class="description">{{ fruit.description|slice:50 }}</p>
             <!-- fruit details button -->
             <a class="details-btn" href="{% url 'fruit_details' pk=fruit.pk %}">More Info</a>

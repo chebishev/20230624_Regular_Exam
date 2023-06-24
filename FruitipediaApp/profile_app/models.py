@@ -12,7 +12,7 @@ class ProfileModel(models.Model):
         max_length=25,
         validators=[
             MinLengthValidator(2),
-            name_starts_with_letter  # TODO -> Check this when you are testing the forms!
+            name_starts_with_letter
         ]
     )
     last_name = models.CharField(
@@ -21,7 +21,7 @@ class ProfileModel(models.Model):
         max_length=35,
         validators=[
             MinLengthValidator(1),
-            name_starts_with_letter  # TODO -> Check this when you are testing the forms!
+            name_starts_with_letter
         ]
     )
     email = models.EmailField(
@@ -42,6 +42,5 @@ class ProfileModel(models.Model):
         null=True
     )
     age = models.PositiveIntegerField(
-        # TODO -> Check this when you are testing the forms!
         default=18
     )

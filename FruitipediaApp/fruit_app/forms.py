@@ -23,3 +23,18 @@ class CreateFruitForm(BaseFruitForm):
             'image_url': forms.URLInput(attrs={'placeholder': 'Fruit Image URL'}),
             'nutrition': forms.Textarea(attrs={'placeholder': 'Nutrition Info'}),
         }
+
+
+class EditFruitForm(BaseFruitForm):
+    class Meta(BaseFruitForm.Meta):
+        labels = {
+            'image_url': 'Image URL',
+        }
+
+
+class DeleteFruitForm(BaseFruitForm):
+    class Meta(BaseFruitForm.Meta):
+        exclude = ['nutrition']
+        labels = {
+            'image_url': 'Image URL',
+        }
